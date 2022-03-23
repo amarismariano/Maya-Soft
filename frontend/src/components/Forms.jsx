@@ -4,7 +4,6 @@ import useCats from "../hooks/useCats";
 
 const Forms = () => {
   const [busqueda, setBusqueda] = useState({
-    nombre: "",
     categoria: "",
   });
 
@@ -33,7 +32,7 @@ const Forms = () => {
       <Row>
         <Col md={6}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="nombre">Nombre del gato</Form.Label>
+            <Form.Label htmlFor="nombre">Cat</Form.Label>
 
             <Form.Control
               id="nombre"
@@ -52,7 +51,7 @@ const Forms = () => {
         </Col>
         <Col md={6}>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="categoria">Raza del gato</Form.Label>
+            <Form.Label htmlFor="categoria">Breed</Form.Label>
 
             <Form.Select
               id="categoria"
