@@ -7,7 +7,7 @@ const CatsList = () => {
   const { cats } = useCats();
 
   return (
-    <Row>
+    <Row className="mt-5">
       {cats.map((cat) => (
         <Cat cats={cat} key={cat.id} />
       ))}
