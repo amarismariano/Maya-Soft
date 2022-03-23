@@ -1,8 +1,7 @@
 import React from "react";
-import { Col, Card, Button } from "react-bootstrap";
+import { Col, Card, Button, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const Cat = ({ cats }) => {
-  console.log(cats);
   return (
     <Col md={6} lg={4}>
       <Card className="mb-4">
@@ -15,7 +14,18 @@ const Cat = ({ cats }) => {
         <Card.Body>
           <Card.Title>{cats.name}</Card.Title>
           <Card.Text>{cats.description}</Card.Text>
+          <Card.Text>
+            <i>{cats.temperament}</i>{" "}
+          </Card.Text>
+          <Button className="w-100 text-uppercase" variant="secondary">
+            See More!
+          </Button>
         </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroupItem>{`Adaptability level ${cats.adaptability}`}</ListGroupItem>
+          <ListGroupItem>{`Affection level ${cats.affection_level}`}</ListGroupItem>
+          <ListGroupItem>{`Child Friendly level ${cats.child_friendly}`}</ListGroupItem>
+        </ListGroup>
 
         <Card.Body>
           <Card.Link href={cats.wikipedia_url}>Wikipedia</Card.Link>

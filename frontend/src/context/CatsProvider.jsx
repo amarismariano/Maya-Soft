@@ -10,8 +10,8 @@ const CatsProvider = ({ children }) => {
 
   const getCats = async () => {
     try {
-      const url = "https://api.thecatapi.com/v1/breeds";
-      const { data } = await axios.get(url);
+      const url1 = "https://api.thecatapi.com/v1/breeds";
+      const { data } = await axios.get(url1);
       setBreeds(data);
       setNames(data);
       setCats(data);
