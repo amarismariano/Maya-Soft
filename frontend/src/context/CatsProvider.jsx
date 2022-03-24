@@ -11,10 +11,14 @@ const CatsProvider = ({ children }) => {
   //Modal
   const [modal, setModal] = useState(false);
 
+  /**
+   *
+   */
+
   const getCats = async () => {
     try {
-      const url1 = "https://api.thecatapi.com/v1/breeds";
-      const { data } = await axios.get(url1);
+      const url = "https://api.thecatapi.com/v1/breeds";
+      const { data } = await axios(url);
       setBreeds(data);
       setNames(data);
       setCats(data);

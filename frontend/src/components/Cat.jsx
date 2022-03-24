@@ -12,6 +12,8 @@ const Cat = ({ cats }) => {
           variant="top"
           src={cats?.image?.url}
           alt={`Imagen de ${cats.name}`}
+          width={300}
+          height={300}
         />
 
         <Card.Body>

@@ -82,7 +82,7 @@ const Forms = () => {
             className="text-uppercase w-100"
             type="submit"
           >
-            Buscar Gato
+            Search
           </Button>
         </Col>
       </Row>
