@@ -1,15 +1,15 @@
-import { useState, useEffect, createContext } from "react";
-import axios from "axios";
+import { useState, createContext } from "react";
 
 const BreedsContext = createContext();
 
 const BreedsProvider = ({ children }) => {
-  const [busqueda, setBusqueda] = useState({
+  //State of the search bar
+  const [search, setSearch] = useState({
     categoria: "",
   });
 
   return (
-    <BreedsContext.Provider value={{ busqueda, setBusqueda }}>
+    <BreedsContext.Provider value={{ search, setSearch }}>
       {children}
     </BreedsContext.Provider>
   );

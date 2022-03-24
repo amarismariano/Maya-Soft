@@ -5,6 +5,8 @@ import useCats from "../hooks/useCats";
 
 const Cat = ({ cat }) => {
   const { setCats, cats } = useCats();
+
+  //This let us delete a cat from the App
   const remove = (name) => {
     setCats(cats.filter((cat) => cat.name !== name));
   };

@@ -9,6 +9,8 @@ const CatsList = () => {
   const [postPerPage, setPostPerPage] = useState(6);
 
   const { cats, loading } = useCats();
+
+  //Pagination
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = cats.slice(indexOfFirstPost, indexOfLastPost);
@@ -45,6 +47,7 @@ const CatsList = () => {
   );
 
   return (
+    // Loader
     <>
       {loading ? (
         <Spinner animation="border" role="status">

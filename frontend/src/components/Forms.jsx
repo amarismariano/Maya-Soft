@@ -3,26 +3,28 @@ import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import useCats from "../hooks/useCats";
 
 const Forms = () => {
-  const [busqueda, setBusqueda] = useState({
+  const [search, setSearch] = useState({
     categoria: "",
   });
   const [alert, setAlert] = useState("");
 
+  // We take the states and variables from the Cats Context
   const { breeds, cats, setCats, allCats } = useCats();
 
+  //This basically let us validate our search, then do the search and get a Cat by his ID
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (Object.values(busqueda).includes("")) {
+    if (Object.values(search).includes("")) {
       setAlert("Todos los campos son obligatorios");
       return;
     }
 
     setAlert("");
     if (cats.length === 1 || cats.length === 0) {
-      setCats(allCats.filter((cat) => cat.id === busqueda.categoria));
+      setCats(allCats.filter((cat) => cat.id === search.categoria));
     } else {
-      setCats(cats.filter((cat) => cat.id === busqueda.categoria));
+      setCats(cats.filter((cat) => cat.id === search.categoria));
     }
   };
   return (
@@ -41,8 +43,8 @@ const Forms = () => {
               id="name"
               name="name"
               onChange={(e) =>
-                setBusqueda({
-                  ...busqueda,
+                setSearch({
+                  ...search,
                   [e.target.name]: e.target.value,
                 })
               }
@@ -63,11 +65,11 @@ const Forms = () => {
             <Form.Select
               id="categoria"
               name="categoria"
-              value={busqueda.categoria}
+              value={search.categoria}
               onChange={(e) => {
                 let cat = breeds.filter((cat) => cat.id === e.target.value);
-                setBusqueda({
-                  ...busqueda,
+                setSearch({
+                  ...search,
                   [e.target.name]: e.target.value,
                   ["name"]: cat[0].name,
                 });
