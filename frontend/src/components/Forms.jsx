@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import useCats from "../hooks/useCats";
-import useBreeds from "../hooks/useBreeds";
 
 const Forms = () => {
   const [busqueda, setBusqueda] = useState({
@@ -9,8 +8,7 @@ const Forms = () => {
   });
   const [alert, setAlert] = useState("");
 
-  const { breeds, modal, handleModalClick } = useCats();
-  const { getCatIds, breedsId } = useBreeds();
+  const { breeds, cats, setCats, allCats } = useCats();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,16 +19,12 @@ const Forms = () => {
     }
 
     setAlert("");
-    getCatIds(busqueda);
-    {
-      console.log(breedsId);
+    if (cats.length === 1 || cats.length === 0) {
+      setCats(allCats.filter((cat) => cat.id === busqueda.categoria));
+    } else {
+      setCats(cats.filter((cat) => cat.id === busqueda.categoria));
     }
   };
-
-  useEffect(() => {
-    getCatIds(busqueda);
-  }, [busqueda]);
-
   return (
     <Form onSubmit={handleSubmit}>
       {alert && (
@@ -70,12 +64,14 @@ const Forms = () => {
               id="categoria"
               name="categoria"
               value={busqueda.categoria}
-              onChange={(e) =>
+              onChange={(e) => {
+                let cat = breeds.filter((cat) => cat.id === e.target.value);
                 setBusqueda({
                   ...busqueda,
                   [e.target.name]: e.target.value,
-                })
-              }
+                  ["name"]: cat[0].name,
+                });
+              }}
             >
               <option>-- Select -- </option>
               {breeds.map((breed) => (

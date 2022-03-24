@@ -3,33 +3,36 @@ import ReactStars from "react-stars";
 import { Col, Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import useCats from "../hooks/useCats";
 
-const Cat = ({ cats }) => {
-  const { handleModalClick } = useCats();
+const Cat = ({ cat }) => {
+  const { setCats, cats } = useCats();
+  const remove = (name) => {
+    setCats(cats.filter((cat) => cat.name !== name));
+  };
 
   return (
     <Col md={6} lg={4}>
       <Card border="dark" className="mb-4">
         <Card.Img
           variant="top"
-          src={cats?.image?.url}
-          alt={`Imagen de ${cats.name}`}
+          src={cat?.image?.url}
+          alt={`Imagen de ${cat.name}`}
           width={300}
           height={300}
         />
 
         <Card.Body>
-          <Card.Title>{cats.name}</Card.Title>
-          <Card.Text>{cats.description}</Card.Text>
+          <Card.Title>{cat.name}</Card.Title>
+          <Card.Text>{cat.description}</Card.Text>
           <Card.Text>
             <strong>Origin: </strong>
             {cats.origin}
           </Card.Text>
           <Card.Text>
-            <strong>Life Span:</strong> {`${cats.life_span} Years`}
+            <strong>Life Span:</strong> {`${cat.life_span} Years`}
           </Card.Text>
           <Card.Text>
             <i>
-              <strong>Moods:</strong> {cats.temperament}
+              <strong>Moods:</strong> {cat.temperament}
             </i>{" "}
           </Card.Text>
         </Card.Body>
@@ -38,7 +41,7 @@ const Cat = ({ cats }) => {
             <i>Adaptability</i>
             <ReactStars
               count={5}
-              value={cats.adaptability}
+              value={cat.adaptability}
               size={24}
               edit={false}
             />
@@ -47,7 +50,7 @@ const Cat = ({ cats }) => {
             <i>Affection</i>
             <ReactStars
               count={5}
-              value={cats.affection_level}
+              value={cat.affection_level}
               size={24}
               edit={false}
             />
@@ -56,33 +59,33 @@ const Cat = ({ cats }) => {
             <i>Child Friendly</i>
             <ReactStars
               count={5}
-              value={cats.child_friendly}
+              value={cat.child_friendly}
               size={24}
               edit={false}
             />
           </ListGroupItem>
           <Button
             variant={"danger"}
-            onClick={() => handleModalClick()}
+            onClick={() => remove(cat.name)}
             className="w-100 text-uppercase mt-2"
           >
-            Ver más
+            Delete
           </Button>
         </ListGroup>
         <Card.Body className="text-center">
           <Card.Text>Links</Card.Text>
           <Card.Link
             style={{ textDecoration: "none" }}
-            href={cats.wikipedia_url}
+            href={cat.wikipedia_url}
           >
             Wikipedia
           </Card.Link>
-          <Card.Link style={{ textDecoration: "none" }} href={cats.cfa_url}>
+          <Card.Link style={{ textDecoration: "none" }} href={cat.cfa_url}>
             CFA
           </Card.Link>
           <Card.Link
             style={{ textDecoration: "none" }}
-            href={cats.vetstreet_url}
+            href={cat.vetstreet_url}
           >
             Vet Street
           </Card.Link>
