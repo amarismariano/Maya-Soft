@@ -1,4 +1,5 @@
 import React from "react";
+import ReactStars from "react-stars";
 import { Col, Card, Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import useCats from "../hooks/useCats";
 
@@ -7,7 +8,7 @@ const Cat = ({ cats }) => {
 
   return (
     <Col md={6} lg={4}>
-      <Card className="mb-4">
+      <Card border="dark" className="mb-4">
         <Card.Img
           variant="top"
           src={cats?.image?.url}
@@ -24,7 +25,7 @@ const Cat = ({ cats }) => {
             {cats.origin}
           </Card.Text>
           <Card.Text>
-            <strong>Life Expectancy:</strong> {`${cats.life_span} Years`}
+            <strong>Life Span:</strong> {`${cats.life_span} Years`}
           </Card.Text>
           <Card.Text>
             <i>
@@ -33,9 +34,33 @@ const Cat = ({ cats }) => {
           </Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>{`Adaptability level ${cats.adaptability}`}</ListGroupItem>
-          <ListGroupItem>{`Affection level ${cats.affection_level}`}</ListGroupItem>
-          <ListGroupItem>{`Child Friendly level ${cats.child_friendly}`}</ListGroupItem>
+          <ListGroupItem>
+            <i>Adaptability</i>
+            <ReactStars
+              count={5}
+              value={cats.adaptability}
+              size={24}
+              edit={false}
+            />
+          </ListGroupItem>
+          <ListGroupItem>
+            <i>Affection</i>
+            <ReactStars
+              count={5}
+              value={cats.affection_level}
+              size={24}
+              edit={false}
+            />
+          </ListGroupItem>
+          <ListGroupItem>
+            <i>Child Friendly</i>
+            <ReactStars
+              count={5}
+              value={cats.child_friendly}
+              size={24}
+              edit={false}
+            />
+          </ListGroupItem>
         </ListGroup>
         <Button
           onClick={() => {
@@ -46,10 +71,23 @@ const Cat = ({ cats }) => {
         >
           See More!
         </Button>
-        <Card.Body>
-          <Card.Link href={cats.wikipedia_url}>Wikipedia</Card.Link>
-          <Card.Link href={cats.cfa_url}>CFA</Card.Link>
-          <Card.Link href={cats.vetstreet_url}>Vet Street</Card.Link>
+        <Card.Body className="text-center">
+          <Card.Text>Links</Card.Text>
+          <Card.Link
+            style={{ textDecoration: "none" }}
+            href={cats.wikipedia_url}
+          >
+            Wikipedia
+          </Card.Link>
+          <Card.Link style={{ textDecoration: "none" }} href={cats.cfa_url}>
+            CFA
+          </Card.Link>
+          <Card.Link
+            style={{ textDecoration: "none" }}
+            href={cats.vetstreet_url}
+          >
+            Vet Street
+          </Card.Link>
         </Card.Body>
       </Card>
     </Col>
