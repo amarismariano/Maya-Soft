@@ -27,8 +27,14 @@ const CatsProvider = ({ children }) => {
     getCats();
   }, []);
 
+  const handleModalClick = () => {
+    setModal(!modal);
+  };
+
   return (
-    <CatsContext.Provider value={{ breeds, names, cats }}>
+    <CatsContext.Provider
+      value={{ breeds, names, cats, modal, handleModalClick }}
+    >
       {children}
     </CatsContext.Provider>
   );

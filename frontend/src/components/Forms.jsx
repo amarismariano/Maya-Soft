@@ -7,10 +7,9 @@ const Forms = () => {
   const [busqueda, setBusqueda] = useState({
     categoria: "",
   });
-
   const [alert, setAlert] = useState("");
 
-  const { breeds } = useCats();
+  const { breeds, modal, handleModalClick } = useCats();
   const { getCatIds, breedsId } = useBreeds();
 
   const handleSubmit = (e) => {

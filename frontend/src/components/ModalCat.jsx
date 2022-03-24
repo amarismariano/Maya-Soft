@@ -7,7 +7,7 @@ const ModalCat = () => {
 
   return (
     <Modal show={modal} onHide={handleModalClick}>
-      <Modal.Body>zzz</Modal.Body>
+      <Modal.Body>Cuerpo de Modal</Modal.Body>
     </Modal>
   );
 };
