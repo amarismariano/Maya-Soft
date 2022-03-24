@@ -11,10 +11,6 @@ const CatsProvider = ({ children }) => {
   //Modal
   const [modal, setModal] = useState(false);
 
-  /**
-   *
-   */
-
   const getCats = async () => {
     try {
       const url = "https://api.thecatapi.com/v1/breeds";
@@ -31,14 +27,8 @@ const CatsProvider = ({ children }) => {
     getCats();
   }, []);
 
-  const handleModalClick = () => {
-    setModal(!modal);
-  };
-
   return (
-    <CatsContext.Provider
-      value={{ breeds, names, cats, handleModalClick, modal }}
-    >
+    <CatsContext.Provider value={{ breeds, names, cats }}>
       {children}
     </CatsContext.Provider>
   );

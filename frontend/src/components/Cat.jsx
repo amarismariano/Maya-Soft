@@ -1,11 +1,8 @@
 import React from "react";
 import ReactStars from "react-stars";
-import { Col, Card, Button, ListGroup, ListGroupItem } from "react-bootstrap";
-import useCats from "../hooks/useCats";
+import { Col, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const Cat = ({ cats }) => {
-  const { handleModalClick } = useCats();
-
   return (
     <Col md={6} lg={4}>
       <Card border="dark" className="mb-4">
@@ -62,15 +59,6 @@ const Cat = ({ cats }) => {
             />
           </ListGroupItem>
         </ListGroup>
-        <Button
-          onClick={() => {
-            handleModalClick();
-          }}
-          className="w-100 text-uppercase"
-          variant="secondary"
-        >
-          See More!
-        </Button>
         <Card.Body className="text-center">
           <Card.Text>Links</Card.Text>
           <Card.Link

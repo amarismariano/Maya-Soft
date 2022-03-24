@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import useCats from "../hooks/useCats";
+import useBreeds from "../hooks/useBreeds";
 
 const Forms = () => {
   const [busqueda, setBusqueda] = useState({
@@ -10,6 +11,7 @@ const Forms = () => {
   const [alert, setAlert] = useState("");
 
   const { breeds } = useCats();
+  const { getCatIds, breedsId } = useBreeds();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +22,15 @@ const Forms = () => {
     }
 
     setAlert("");
+    getCatIds(busqueda);
+    {
+      console.log(breedsId);
+    }
   };
+
+  useEffect(() => {
+    getCatIds(busqueda);
+  }, [busqueda]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -34,19 +44,23 @@ const Forms = () => {
           <Form.Group className="mb-3">
             <Form.Label htmlFor="nombre">Cat</Form.Label>
 
-            <Form.Control
-              id="nombre"
-              type="text"
-              name="nombre"
-              placeholder="Ex: American"
-              value={busqueda.nombre}
+            <Form.Select
+              id="name"
+              name="name"
               onChange={(e) =>
                 setBusqueda({
                   ...busqueda,
                   [e.target.name]: e.target.value,
                 })
               }
-            ></Form.Control>
+            >
+              <option>-- Select -- </option>
+              {breeds.map((breed) => (
+                <option key={breed.name} value={breed.name}>
+                  {breed.name}
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
         </Col>
         <Col md={6}>
@@ -66,8 +80,8 @@ const Forms = () => {
             >
               <option>-- Select -- </option>
               {breeds.map((breed) => (
-                <option key={breed.name} value={breed.name}>
-                  {breed.name}
+                <option key={breed.id} value={breed.id}>
+                  {breed.id}
                 </option>
               ))}
             </Form.Select>
