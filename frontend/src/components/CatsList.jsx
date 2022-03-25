@@ -61,9 +61,11 @@ const CatsList = () => {
         <>
           {" "}
           <Row className="mt-5">
-            {currentPosts.map((cat) => (
-              <Cat cat={cat} key={cat.id} />
-            ))}
+            {currentPosts.length === 0 ? (
+              <h1 style={{ textAlign: "center" }}>No Cats Found :(</h1>
+            ) : (
+              currentPosts.map((cat) => <Cat cat={cat} key={cat.id} />)
+            )}
           </Row>
           {paginationBasic}
         </>

@@ -18,8 +18,15 @@ const Forms = () => {
   // Filter Cats By Name
   const handleChangeCatName = (e) => {
     const currentValue = e.target.value;
+
+    // Validation - not allowing numbers or special chars
+    if (!/^[a-zA-Z]+$/.test(currentValue) && currentValue !== "") return;
+
     setCatName(currentValue);
+
+    // Validations
     if (currentValue === "") return setCats(allCats);
+
     const filteredCat = allCats.filter((cat) =>
       cat.name.toLowerCase().includes(currentValue.toLowerCase())
     );
