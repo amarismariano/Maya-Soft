@@ -74,7 +74,7 @@ const Forms = () => {
             <Form.Control
               disabled={!isNameFilterActive}
               type="text"
-              placeholder="Busca por nombre"
+              placeholder="Search By Name"
               value={catName}
               onChange={handleChangeCatName}
               id="nombre"
