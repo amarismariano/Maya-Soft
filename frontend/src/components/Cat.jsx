@@ -27,7 +27,7 @@ const Cat = ({ cat }) => {
           <Card.Text>{cat.description}</Card.Text>
           <Card.Text>
             <strong>Origin: </strong>
-            {cats.origin}
+            {cat.origin}
           </Card.Text>
           <Card.Text>
             <strong>Life Span:</strong> {`${cat.life_span} Years`}

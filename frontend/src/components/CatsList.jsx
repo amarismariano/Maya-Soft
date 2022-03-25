@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCats from "../hooks/useCats";
 import Cat from "./Cat";
 import { Row, Pagination, Spinner } from "react-bootstrap";
@@ -16,7 +16,7 @@ const CatsList = () => {
   const currentPosts = cats.slice(indexOfFirstPost, indexOfLastPost);
 
   let items = [];
-  for (let number = 1; number <= Math.floor(cats.length / 6); number++) {
+  for (let number = 1; number <= Math.ceil(cats.length / 6); number++) {
     items.push(
       <Pagination.Item
         onClick={() => paginate(number)}
@@ -27,6 +27,10 @@ const CatsList = () => {
       </Pagination.Item>
     );
   }
+
+  useEffect(() => {
+    paginate(1);
+  }, [cats]);
 
   const paginate = (pageNumber) => {
     setActive(pageNumber);

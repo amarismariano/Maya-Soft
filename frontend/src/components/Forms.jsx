@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Form, Row, Col, Alert } from "react-bootstrap";
 import useCats from "../hooks/useCats";
 
@@ -15,20 +15,30 @@ const Forms = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    //Validation
     if (Object.values(search).includes("")) {
       setAlert("Todos los campos son obligatorios");
       return;
     }
 
     setAlert("");
+
+    //Filter Cats By ID
     if (cats.length === 1 || cats.length === 0) {
       setCats(allCats.filter((cat) => cat.id === search.categoria));
+      console.log("Funciona 1");
     } else {
       setCats(cats.filter((cat) => cat.id === search.categoria));
     }
   };
+
+  // To Reset the cats after the query
+  const handleReset = (e) => {
+    setCats(allCats);
+  };
+
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form>
       {alert && (
         <Alert variant="danger" className="text-center">
           {alert}
@@ -89,11 +99,20 @@ const Forms = () => {
       <Row className="justify-content-end">
         <Col md={3}>
           <Button
-            variant="danger"
+            onClick={handleSubmit}
+            variant="primary"
             className="text-uppercase w-100"
-            type="submit"
           >
             Search
+          </Button>
+        </Col>
+        <Col md={3}>
+          <Button
+            variant="primary"
+            className="text-uppercase w-100"
+            onClick={handleReset}
+          >
+            Reset
           </Button>
         </Col>
       </Row>
