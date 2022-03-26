@@ -131,26 +131,6 @@ const Forms = () => {
             Reset
           </Button>
         </Col>
-        <Col md={3}>
-          <Button
-            disabled={isIdFilterActive}
-            variant="primary"
-            className="text-uppercase w-100"
-            onClick={handleReset}
-          >
-            A - Z
-          </Button>
-        </Col>
-        <Col md={3}>
-          <Button
-            disabled={isIdFilterActive}
-            variant="primary"
-            className="text-uppercase w-100"
-            onClick={handleReset}
-          >
-            Z - A
-          </Button>
-        </Col>
       </Row>
     </Form>
   );
