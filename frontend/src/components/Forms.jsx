@@ -42,7 +42,7 @@ const Forms = () => {
 
     //Validation
     if (Object.values(search).includes("")) {
-      setAlert("Todos los campos son obligatorios");
+      setAlert("All Fields Are Mandatory");
       return;
     }
 
