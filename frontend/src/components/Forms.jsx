@@ -13,7 +13,7 @@ const Forms = () => {
   const isIdFilterActive = catName.length > 0;
 
   // We take the states and variables from the Cats Context
-  const { breeds, cats, setCats, allCats } = useCats();
+  const { breeds, cats, setCats, allCats, setOrder } = useCats();
 
   // Filter Cats By Name
   const handleChangeCatName = (e) => {
@@ -113,6 +113,19 @@ const Forms = () => {
               ))}
             </Form.Select>
           </Form.Group>
+        </Col>
+        <Col md={3}>
+          <Form.Label htmlFor="order">Order</Form.Label>
+          <Form.Select
+            id="Order"
+            name="order"
+            onChange={(e) => setOrder(e.target.value)}
+          >
+            <option selected value="az">
+              A-Z
+            </option>
+            <option value="za">Z-A</option>
+          </Form.Select>
         </Col>
       </Row>
 

@@ -1,19 +1,25 @@
 import { useEffect, useState } from "react";
+import { Row, Pagination, Spinner } from "react-bootstrap";
 import useCats from "../hooks/useCats";
 import Cat from "./Cat";
-import { Row, Pagination, Spinner } from "react-bootstrap";
+
+//Utils
+import { sortFunction } from "../utils";
 
 const CatsList = () => {
   const [active, setActive] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostPerPage] = useState(6);
 
-  const { cats, loading } = useCats();
+  const { cats, loading, order } = useCats();
 
   //Pagination
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = cats.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = sortFunction(cats, order).slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   let items = [];
   for (let number = 1; number <= Math.ceil(cats.length / 6); number++) {

@@ -5,6 +5,7 @@ const CatsContext = createContext();
 
 const CatsProvider = ({ children }) => {
   //States
+  const [order, setOrder] = useState("az");
   const [breeds, setBreeds] = useState([]);
   const [names, setNames] = useState([]);
   const [cats, setCats] = useState([]);
@@ -40,8 +41,10 @@ const CatsProvider = ({ children }) => {
         cats,
         loading,
         allCats,
+        order,
         getCats,
         setCats,
+        setOrder,
       }}
     >
       {children}
