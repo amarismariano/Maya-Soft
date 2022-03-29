@@ -22,18 +22,21 @@ const Forms = () => {
     // Validation - not allowing numbers or special chars
     if (!/^[a-zA-Z]+$/.test(currentValue) && currentValue !== "") return;
 
+    //After this we set the state
     setCatName(currentValue);
+    setAlert("");
 
     // Validations
     if (currentValue === "") return setCats(allCats);
 
+    //We filter the cats
     const filteredCat = allCats.filter((cat) =>
       cat.name.toLowerCase().includes(currentValue.toLowerCase())
     );
     setCats(filteredCat);
   };
 
-  //This basically let us validate our search, then do the search and get a Cat by his ID
+  //This basically let us validate our search, then do the search and get a Cat by his ID/Breed
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -43,6 +46,7 @@ const Forms = () => {
       return;
     }
 
+    //IF there is no error in our search, we set the alert to a empty string
     setAlert("");
     setIsNameFilterActive(false);
 
@@ -58,6 +62,8 @@ const Forms = () => {
   const handleReset = () => {
     setCats(allCats);
     setIsNameFilterActive(true);
+    setSearch({ categoria: "" });
+    setAlert("");
   };
 
   return (

@@ -4,15 +4,14 @@ import axios from "axios";
 const CatsContext = createContext();
 
 const CatsProvider = ({ children }) => {
+  //States
   const [breeds, setBreeds] = useState([]);
   const [names, setNames] = useState([]);
   const [cats, setCats] = useState([]);
   const [allCats, setAllCats] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  //Modal
-  const [modal, setModal] = useState(false);
-
+  //FUnction that provides the cats from the API
   const getCats = async () => {
     try {
       setLoading(true);
@@ -33,20 +32,14 @@ const CatsProvider = ({ children }) => {
     getCats();
   }, []);
 
-  const handleModalClick = () => {
-    setModal(!modal);
-  };
-
   return (
     <CatsContext.Provider
       value={{
         breeds,
         names,
         cats,
-        modal,
         loading,
         allCats,
-        handleModalClick,
         getCats,
         setCats,
       }}
