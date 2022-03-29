@@ -115,17 +115,19 @@ const Forms = () => {
           </Form.Group>
         </Col>
         <Col md={3}>
-          <Form.Label htmlFor="order">Order</Form.Label>
-          <Form.Select
-            id="Order"
-            name="order"
-            onChange={(e) => setOrder(e.target.value)}
-          >
-            <option selected value="az">
-              A-Z
-            </option>
-            <option value="za">Z-A</option>
-          </Form.Select>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="order">Order</Form.Label>
+            <Form.Select
+              id="Order"
+              name="order"
+              onChange={(e) => setOrder(e.target.value)}
+            >
+              <option selected value="az">
+                A-Z
+              </option>
+              <option value="za">Z-A</option>
+            </Form.Select>
+          </Form.Group>
         </Col>
       </Row>
 
@@ -135,7 +137,7 @@ const Forms = () => {
             disabled={isIdFilterActive}
             onClick={handleSubmit}
             variant="primary"
-            className="text-uppercase w-100"
+            className="text-uppercase w-100 mb-2"
           >
             Search
           </Button>
